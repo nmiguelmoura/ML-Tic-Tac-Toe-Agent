@@ -8,10 +8,12 @@ app = Flask(__name__)
 bl_instance = bl.Board_logic()
 ai_instance = ai.Ai_agent()
 
+
 @app.route('/')
 def game():
-    # return render_template('index.html', STATE=state)
+    # return render_template('_index.html', STATE=state)
     return render_template('index.html')
+
 
 @app.route('/get_new_board/')
 @app.route('/get_new_board/<int:rows>/')
@@ -34,7 +36,8 @@ def check_game_over():
             return "Invalid board"
     return "Invalid request"
 
-@app.route('/make_move/')
+
+@app.route('/make_move/', methods=['POST'])
 def make_move():
     if request.method == "POST":
         board = json.loads(request.form["board"])
@@ -45,6 +48,7 @@ def make_move():
         else:
             return "Invalid board"
     return "Invalid request"
+
 
 if __name__ == '__main__':
     app.secret_key = "secret_key"

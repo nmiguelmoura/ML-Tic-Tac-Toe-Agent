@@ -21,15 +21,21 @@ class Test_game(unittest.TestCase):
         self.assertEqual(b.line_complete([-1, 0, -1]), False)
 
     def test_game_won(self):
-        self.assertEqual(b.game_won(b.get_new_board()), 0)
-        self.assertEqual(b.game_won([[-1, 0, -1], [1, 1, 1], [0, -1, 0]]), 1)
-        self.assertEqual(b.game_won([[-1, 0, 1], [-1, -1, 0], [-1, 1, 0]]), -1)
-        self.assertEqual(b.game_won([[-1, 0, 1], [1, -1, 1], [0, -1, -1]]), -1)
-        self.assertEqual(b.game_won([[-1, 0, 1], [0, 1, 0], [1, 0, -1]]), 1)
+        self.assertEqual(b.game_won(b.get_new_board()), (0, {}))
+        self.assertEqual(b.game_won([[-1, 0, -1], [1, 1, 1], [0, -1, 0]]),
+                         (1, {'row': 1}))
+        self.assertEqual(b.game_won([[-1, 0, 1], [-1, -1, 0], [-1, 1, 0]]),
+                         (-1, {'column': 0}))
+        self.assertEqual(b.game_won([[-1, 0, 1], [1, -1, 1], [0, -1, -1]]),
+                         (-1, {'diagonal': 0}))
+        self.assertEqual(b.game_won([[-1, 0, 1], [0, 1, 0], [1, 0, -1]]),
+                         (1, {'diagonal': 1}))
         self.assertEqual(b.game_won(
-            [[-1, 0, 1, 0], [0, 1, 0, 0], [1, 0, -1, 0], [0, 0, 0, 0]]), 0)
+            [[-1, 0, 1, 0], [0, 1, 0, 0], [1, 0, -1, 0], [0, 0, 0, 0]]),
+            (0, {}))
         self.assertEqual(b.game_won(
-            [[-1, 0, 1, 1], [0, 0, 1, 0], [0, 1, -1, 0], [1, 0, 0, 0]]), 1)
+            [[-1, 0, 1, 1], [0, 0, 1, 0], [0, 1, -1, 0], [1, 0, 0, 0]]),
+            (1, {'diagonal': 1}))
 
     def test_moves_available(self):
         self.assertEqual(list(b.moves_available(b.get_new_board())),
@@ -41,14 +47,14 @@ class Test_game(unittest.TestCase):
 
     def test_check_game_status(self):
         self.assertEqual(b.check_game_status(b.get_new_board()),
-                         {"game_won": 0, "moves_available": 9,
-                          "game_over": False})
+                         {'winner': 0, 'moves_available': 9, 'game_over': False, 'info': {}})
         self.assertNotEqual(b.check_game_status(b.get_new_board()),
-                            {"game_won": 0, "moves_available": 9,
-                             "game_over": True})
-        self.assertEqual(b.check_game_status([[-1, 0, -1], [1, 1, 1], [0, -1, 0]]),
-                         {"game_won": 1, "moves_available": 3,
-                          "game_over": True})
+                            {'winner': 0, 'moves_available': 9,
+                             'game_over': True, 'info': {}})
+        self.assertEqual(
+            b.check_game_status([[-1, 0, -1], [1, 1, 1], [0, -1, 0]]),
+            {'winner': 1, 'moves_available': 3, 'info': {'row': 1},
+             'game_over': True})
 
 
 if __name__ == '__main__':

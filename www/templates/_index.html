@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0">
+    <title>Jogo</title>
+</head>
+<body>
+<script>
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.response);
+        }
+    };
+
+    xhttp.open("POST", "/check_game_over/", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    board2 = [[-1, 0, -1], [1, 1, 1], [0, -1, 0]];
+    board3 = "";
+    board_json = JSON.stringify(board2);
+
+    xhttp.send("board=" + board_json);
+    console.log("oi")
+</script>
+</body>
+</html>

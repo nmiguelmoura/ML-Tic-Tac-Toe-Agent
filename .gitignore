@@ -1,3 +1,7 @@
 .idea/
 .vagrant/
 exploration/
+www/static/__static
+design/
+node_modules/
+*.pyc

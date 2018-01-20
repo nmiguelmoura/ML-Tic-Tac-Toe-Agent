@@ -1,29 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0">
-    <title>Jogo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="static/styles/styles.css">
 </head>
-<body>
-<script>
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(this.response);
+<body onload="app_init()">
+    <!--<script src="static/dist/libs.js"></script>
+    <script src="static/dist/app00.js"></script>-->
+    <script src="static/dist/libs/soundjs-0.6.2.min.js"></script>
+    <script src="static/dist/libs/EasePack.min.js"></script>
+    <script src="static/dist/libs/TweenLite.min.js"></script>
+    <script src="static/dist/libs/pixi.min.js"></script>
+    <script src="static/src/general/namespace.js"></script>
+    <script src="static/src/specific/app/config.js"></script>
+    <script src="static/src/general/genericStates/TemplateState.js"></script>
+    <script src="static/src/specific/app/DataModel.js"></script>
+
+
+    <script src="static/src/specific/app/components/ServerInteractionLayer.js"></script>
+    <script src="static/src/specific/app/components/Board.js"></script>
+    <script src="static/src/specific/app/components/Label.js"></script>
+    <script src="static/src/specific/app/models/GameOneModel.js"></script>
+    <script src="static/src/specific/app/views/GameOneView.js"></script>
+    <script src="static/src/specific/app/states/GameOne.js"></script>
+    <script src="static/src/specific/app/models/MenuModel.js"></script>
+    <script src="static/src/specific/app/views/MenuView.js"></script>
+    <script src="static/src/specific/app/states/Menu.js"></script>
+
+
+
+
+
+    <script src="static/src/general/genericStates/views/LoadingView.js"></script>
+    <script src="static/src/general/genericStates/Loading.js"></script>
+    <script src="static/src/general/tools/Pool.js"></script>
+    <script src="static/src/general/tools/utils.js"></script>
+    <script src="static/src/general/components/Button.js"></script>
+    <script src="static/src/general/components/TexturedButton.js"></script>
+    <script src="static/src/general/dom/InputField.js"></script>
+    <script src="static/src/general/dom/Div.js"></script>
+    <script src="static/src/general/engine/AssetsLoader.js"></script>
+    <script src="static/src/general/engine/FSM.js"></script>
+    <script src="static/src/general/engine/Resize.js"></script>
+    <script src="static/src/general/engine/Observer.js"></script>
+    <script src="static/src/general/engine/Application.js"></script>
+    <script>
+        function app_init () {
+            nmm.runtime.app = new nmm.engine.Application();
+            nmm.runtime.app.init();
         }
-    };
-
-    xhttp.open("POST", "/check_game_over/", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-    board2 = [[-1, 0, -1], [1, 1, 1], [0, -1, 0]];
-    board3 = "";
-    board_json = JSON.stringify(board2);
-
-    xhttp.send("board=" + board_json);
-    console.log("oi")
-</script>
+    </script>
+    <!-- END APP SOURCE CODE -->
 </body>
 </html>

@@ -13,5 +13,5 @@ class Ai_agent():
         if type != "random" and type != "ai":
             type = "random"
 
-        return
+        return 0
         # return move

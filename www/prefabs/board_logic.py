@@ -23,25 +23,25 @@ class Board_logic():
         for i in range(rows):
             line = board[i]
             if self.line_complete(line):
-                return line[0]
+                return line[0], {"row": i}
 
         # Check for columns
         for i in range(rows):
             line = [j[i] for j in board]
             if self.line_complete(line):
-                return board[0][i]
+                return board[0][i], {"column": i}
 
         # Check for diagonal (top left to bottom right)
         line = [board[i][i] for i in range(rows)]
         if self.line_complete(line):
-            return line[0]
+            return line[0], {"diagonal": 0}
 
         # Check for diagonal (top right to bottom left)
         line = [board[rows - 1 - i][i] for i in range(rows)]
         if self.line_complete(line):
-            return line[0]
+            return line[0], {"diagonal": 1}
 
-        return 0
+        return 0, {}
 
     def moves_available(self, board):
         rows = len(board)
@@ -50,12 +50,13 @@ class Board_logic():
                 yield (i, j)
 
     def check_game_status(self, board):
-        game_won = self.game_won(board)
+        game_won, info = self.game_won(board)
         moves_available = len(list(self.moves_available(board)))
         result = {
             "moves_available": moves_available,
-            "game_won": game_won,
-            "game_over": True if game_won != 0 and moves_available > 0 else False
+            "winner": game_won,
+            "game_over": True if game_won != 0 and moves_available > 0 else False,
+            "info": info
         }
 
         return result
