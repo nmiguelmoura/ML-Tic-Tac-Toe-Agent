@@ -8,11 +8,12 @@ nmm.states.specificStates.components.ServerInteractionLayer = class ServerIntera
     }
 
     _xhttpCall(type, url, parameters, observerEvent) {
-        let xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest(),
+            timeout = 10000;
 
         var t = setTimeout(function () {
             nmm.observer.publish('connection-error');
-        }, 3000);
+        }, timeout);
 
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {

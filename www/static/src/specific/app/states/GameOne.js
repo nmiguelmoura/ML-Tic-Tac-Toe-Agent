@@ -57,7 +57,7 @@ nmm.states.specificStates.GameOne = class GameOne extends nmm.states.genericStat
     }
 
     _cpuMoveResult(move) {
-
+        this._makeMove(move['row'], move['column'], -1);
     }
 
     _makeMove(row, column, turn) {
@@ -111,7 +111,7 @@ nmm.states.specificStates.GameOne = class GameOne extends nmm.states.genericStat
     _init() {
         nmm.observer.subscribe('board-element-clicked', this._elementClicked, this);
         nmm.observer.subscribe('evaluate-current-game-status', this._evaluateCurrentGameStatus, this);
-        nmm.observer.subscribe('cpu-moved-result', this._cpuMoveResult, this);
+        nmm.observer.subscribe('cpu-move-result', this._cpuMoveResult, this);
         nmm.observer.subscribe('connection-error', this._connectionError, this);
         this._model = new nmm.states.specificStates.models.GameOneModel();
         this._server = new nmm.states.specificStates.components.ServerInteractionLayer();
