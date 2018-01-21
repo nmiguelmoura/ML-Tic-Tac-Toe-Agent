@@ -83,8 +83,8 @@ class Ai_agent():
         return score
 
     def min_max(self, board_state, side, max_depth, rows):
-        # Perform minmax algorithm. This algorithm, and the methods it needs to,
-        # work takes inspiration on the one used in "Deep Learning" book
+        # Perform minmax algorithm. This algorithm, and the support methods,
+        # takes inspiration on the one used in "Deep Learning" book
         # from Packt Publishing.
         # "Deep Learning", Valentino Zocca et al, 2017, Packt Publishing.
         # @board_state - board game.
